@@ -1,21 +1,25 @@
+var loaderUtils = require("loader-utils");
+var changeCase = require('change-case');
+
 module.exports = function(source) {
 	if(this.cacheable) {
 		this.cacheable();
 	}
 
-	var wrap = function(array) {
-		array.map(function(item) {
-			return "'" + item + "'";
-		}).join(",");
-	};
+	var query = loaderUtils.parseQuery(this.query);
+	var prefix = query.prefix || '';
+	console.log('prefix test: ' + prefix);
 
 	var conf = JSON.parse(source);
-	var amdPre = conf.amd.api + "([" + wrap(conf.amd.dependencies) + "], function(" + conf.amd.parameters + ") {";
-	var angularPre = "angular.module('"+ conf.angular.module + "', [" + wrap(conf.angular.dependencies) + "])";
-	var templates = conf.templates.map(function(template) {
-		return ".value('"+ template + "', " + tempalte + ").directive('" + template.toLowerCase() + "', function(reactDirective) {return reactDirective('" + template + "', []);})";
+
+	var keys = Object.keys(conf);
+
+	var amdPre = "define(['external/react','external/angular','external/ngReact'], function(React,angular) {";
+	var angularPre = "angular.module('"+ prefix + "Application', ['react'])";
+	var body = keys.map(function(key) {
+		return ".value('"+ key + "', " + key + ").directive(" + prefix + key + ", ['reactDirective', function(reactDirective) {return reactDirective('" + key + "', []);}])";
 	}).join(".");
 	var angularPost = ";";
 	var amdPost = "});";
-	return amdPre + angularPre + templates + angularPost + amdPost;
+	return amdPre + angularPre + body + angularPost + amdPost;
 };
