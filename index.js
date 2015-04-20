@@ -1,5 +1,4 @@
 var loaderUtils = require("loader-utils");
-var changeCase = require('change-case');
 
 module.exports = function(source) {
 	if(this.cacheable) {

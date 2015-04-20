@@ -4,11 +4,9 @@
   "author": "Hui Wu",
   "description": "",
   "devDependencies": {
-    "change-case": "^2.3.0",
     "loader-utils": "^0.2.7"
   },
   "dependencies": {
-   "change-case": "^2.3.0",
    "loader-utils": "^0.2.7"
   }
 }
