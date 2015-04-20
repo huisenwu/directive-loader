@@ -23,9 +23,12 @@ module.exports = function(source) {
 		return "'" + conf[key] + "'";
 	}).join(",");
 
+	console.log('keys test: ' + keys);
+	console.log('deps test: ' + deps);
+
 	var directives = keys.map(function(key) {
-		return ".value('"+ key + "', " + key + ").directive(" + prefix + key + ", ['reactDirective', function(reactDirective) {return reactDirective('" + key + "', []);}])";
+		return ".value('"+ key + "', " + key + ").directive('" + prefix + key + "', ['reactDirective', function(reactDirective) {return reactDirective('" + key + "', []);}])";
 	}).join("");
-	
+
 	return "define(["+ deps +",'" + react + "','"+ angular +"','"+ ngReact +"'], function("+ keys +",React,angular) {" + "angular.module('"+ prefix + "Application', ['react'])" + directives + ";" + "});";
 };
