@@ -16,7 +16,7 @@ module.exports = function(source) {
 	}).join(",");
 
 	var directives = keys.map(function(key) {
-		return ".value('"+ key + "', " + key + ").directive('" + prefix + key + "', ['reactDirective', function(reactDirective) {return reactDirective('" + key + "', []);}])";
+		return ".value('"+ key + "', " + key + ").directive('" + prefix + key + "', ['reactDirective', function(reactDirective) {return reactDirective('" + key + "');}])";
 	}).join("");
 
 	return "define(["+ deps +",'" + react + "','"+ angular +"','"+ ngReact +"'], function("+ keys +",React,angular) {" + "angular.module('"+ prefix + "Application', ['react'])" + directives + ";" + "});";
