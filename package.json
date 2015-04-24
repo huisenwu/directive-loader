@@ -4,9 +4,11 @@
   "author": "Hui Wu",
   "description": "",
   "devDependencies": {
-    "loader-utils": "^0.2.7"
+    "loader-utils": "^0.2.7",
+    "lodash": "^3.7.0"
   },
   "dependencies": {
-   "loader-utils": "^0.2.7"
+    "loader-utils": "^0.2.7",
+    "lodash": "^3.7.0"
   }
 }
