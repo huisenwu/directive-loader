@@ -6,7 +6,7 @@ module.exports = function(source) {
 
 	var query = loaderUtils.parseQuery(this.query);
 	var templates = {
-		component: "<%=key%>:{Componenet:<%=key%>,render:function(props, target) {React.render(React.createElement(<%=key%>, props), target);},registerDirective: function(app, name) {app.value('<%=key%>Component', Test).directive('<%=prefix%>'+name, ['reactDirective', function(reactDirective) {return reactDirective('<%=key%>Component');}]);}}",
+		component: "<%=key%>:{Componenet:<%=key%>,render:function(props, target) {React.render(React.createElement(<%=key%>, props), target);},registerDirective: function(app, name) {app.value('<%=key%>Component', <%=key%>).directive('<%=prefix%>'+name, ['reactDirective', function(reactDirective) {return reactDirective('<%=key%>Component');}]);}}",
 		amd: "define([<%=values%>,'<%=react%>'], function(<%=keys%>,React) {return {<%=comps%>};});"
 	};
 	var conf = JSON.parse(source);
